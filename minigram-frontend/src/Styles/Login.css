@@ -1,0 +1,135 @@
+/* New container to center the login body */
+
+
+/* Hide the native browser eye icon (works for WebKit-based browsers like Safari and Chrome) */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear,
+input[type="password"]::-webkit-clear-button,
+input[type="password"]::-webkit-inner-spin-button,
+input[type="password"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full height of the viewport */
+    margin: 0; /* Remove default margin */
+    background-color: #f0f0f0; /* Optional: Set a background color for contrast */
+  }
+  
+  /* Existing styles */
+  .login-body {
+    width: 80%; /* Allow it to take full width */
+    max-width: 400px; /* Increase the max width */
+    padding: 20px;
+    border: 1px solid black;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    position: relative;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Keep your existing styles for h1, input, buttons, etc. */
+  
+  
+  .login-body h1 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .login-body .input-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .login-body input {
+    width: 100%;
+    padding: 10px;
+    padding-right: 40px; 
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #282626;
+    box-sizing: border-box;
+  }
+  
+  .login-body input::placeholder {
+    color: #ccc;
+  }
+  
+  .login-body .icon {
+  
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #333;
+  }
+  
+  .login-body .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin: -10px 0 20px;
+  }
+  
+  .login-body .remember-forgot label {
+    display: flex;
+    align-items: center;
+    color: #121212;
+  }
+  
+  .login-body .remember-forgot a {
+    color: #363535;
+    text-decoration: none;
+  }
+  
+  .login-body .remember-forgot a:hover {
+    text-decoration: underline;
+  }
+  
+  .login-body button {
+    padding: 10px;
+    width: 100%;
+    margin: 10px 0;
+    background-color: #4b4a4a;
+    color: #f9f6f6;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .login-body button:hover {
+    background-color: #555;
+    color: #fff;
+  }
+  
+  .login-body .register-link {
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .login-body .register-link a {
+    color: #4e4a4a;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .login-body .register-link a:hover {
+    text-decoration: underline;
+  }
+  

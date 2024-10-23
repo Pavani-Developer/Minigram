@@ -1,0 +1,149 @@
+/* General styles for the feed page */
+.feed-container {
+    max-width: 600px; /* Limit the width of the feed */
+    margin: 0 auto; /* Center the feed */
+    padding: 20px; /* Add some padding */
+    font-family: Arial, sans-serif; /* Set the font */
+}
+
+/* Each post styling */
+.post {
+    background: white; /* White background for each post */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    margin-bottom: 20px; /* Space between posts */
+    overflow: hidden; /* Prevent overflow from image */
+    transition: transform 0.2s; /* Add hover effect */
+}
+
+/* Hover effect for post */
+.post:hover {
+    transform: scale(1.01); /* Slightly scale up on hover */
+}
+
+/* Header for each post */
+.post-header {
+    display: flex; /* Flex layout for user info */
+    align-items: center; /* Center items vertically */
+    padding: 10px; /* Padding for the header */
+}
+
+/* User image */
+.post-user-img {
+    border-radius: 50%; /* Circular user image */
+    margin-right: 10px; /* Space between image and username */
+}
+
+/* Username styling */
+.post-username {
+    font-weight: bold; /* Bold username */
+}
+
+/* Post image styling */
+.post-image {
+    width: 100%; /* Full width of the post */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Actions section for likes and comments */
+.post-actions {
+    display: flex; /* Flex layout for buttons */
+    justify-content: space-between; /* Space between buttons */
+    padding: 10px; /* Padding for actions */
+}
+
+/* Button styles */
+.like-button,
+.comment-button {
+    background: transparent; /* Transparent background */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 16px; /* Font size */
+    color: #333; /* Button text color */
+}
+
+/* Caption styling */
+.post-caption {
+    padding: 10px; /* Padding for the caption */
+    font-size: 14px; /* Font size */
+}
+
+/* Hover effect for buttons */
+.like-button:hover,
+.comment-button:hover {
+    opacity: 0.7; /* Slightly reduce opacity on hover */
+}
+
+/* Comment Section Styles */
+.comment-section {
+    padding: 10px; /* Padding for the comment section */
+    border-top: 1px solid #eee; /* Top border for separation */
+    margin-top: 10px; /* Space above comment section */
+}
+
+/* Comment form styles */
+.comment-form {
+    display: flex; /* Flex layout for form */
+    justify-content: space-between; /* Space between input and button */
+}
+
+/* Comment input field */
+.comment-input {
+    flex-grow: 1; /* Allow input to grow */
+    padding: 10px; /* Padding for the input */
+    border: 1px solid #ccc; /* Border for the input */
+    border-radius: 4px; /* Rounded corners */
+    margin-right: 10px;
+    width: 400%; /* Space between input and button */
+}
+
+/* Submit button */
+.comment-submit {
+    padding: 10px 15px; /* Padding for the button */
+    border: none; /* No border */
+    background-color: #3A213E; /* Button color */
+    color: white; /* Button text color */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.comment-submit:hover {
+    background-color: #3A213E; /* Darker shade on hover */
+}
+
+/* Comments list */
+.comments-list {
+    margin-top: 10px; /* Space above comments */
+}
+
+/* Individual comment styling */
+.comment {
+    padding: 5px 0; /* Padding for individual comments */
+    font-size: 14px; /* Font size for comments */
+    color: #333; /* Text color */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .feed-container {
+        padding: 10px; /* Reduce padding on smaller screens */
+    }
+
+    .post-caption {
+        font-size: 12px; /* Smaller font size for captions */
+    }
+
+    .like-button,
+    .comment-button {
+        font-size: 14px; /* Smaller button text */
+    }
+
+    .comment-input {
+        font-size: 14px; /* Adjust input font size */
+    }
+
+    .comment-submit {
+        font-size: 14px; /* Adjust button font size */
+    }
+}

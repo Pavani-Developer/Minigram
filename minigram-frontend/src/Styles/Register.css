@@ -1,0 +1,60 @@
+.register-body {
+    width: auto;
+    max-width: 500px;
+    padding: 20px;
+    border: 1px solid black;
+    margin: 50px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    position: relative; 
+    border-radius: 25px;
+}
+
+.register-body h1 {
+    margin-bottom: 20px;
+}
+
+.register-body .input-container {
+    position: relative; 
+    width: 100%;
+}
+
+.register-body input {
+    width: 100%;
+    padding: 10px;
+    padding-right: 40px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.register-body .icon {
+    position: absolute;
+    right: 10px; 
+    top: 50%;
+    transform: translateY(-50%); 
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+}
+
+.register-body button {
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.register-body button:hover {
+    background-color: #555;
+}

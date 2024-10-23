@@ -1,0 +1,148 @@
+/* ChatList.css */
+
+/* Main chat list container */
+.chat-list {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: white;
+    border-right: 1px solid #e0e0e0;
+    margin-left: 150px;
+    width: calc(100% - 150px); /* Dynamic width */
+}
+
+/* Search bar container */
+.search-bar {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #f8f8f8;
+    width: 100%;
+    max-width: 500px; /* Ensures a maximum width for larger screens */
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 20px;
+    background-color: #f1f1f1;
+}
+
+.search-icon {
+    font-size: 1.5rem;
+    color: #888;
+}
+
+/* Conversations list container */
+.conversations {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+/* Each individual conversation item */
+.conversation {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    text-decoration: none;
+    border-bottom: 1px solid #e0e0e0;
+    color: black;
+}
+
+.conversation:hover {
+    background-color: #f9f9f9;
+}
+
+.user-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.username {
+    font-weight: bold;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.last-message {
+    font-size: 0.9rem;
+    color: #888;
+    margin: 0;
+}
+
+/* Media Queries for responsiveness */
+
+/* Tablet view (768px and below) */
+@media (max-width: 768px) {
+    .chat-list {
+        margin-left: 0; /* Remove margin on smaller screens */
+        width: 100%;
+    }
+
+    .conversation {
+        padding: 12px;
+        margin-left: 0px;
+    }
+
+    .user-img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .username {
+        font-size: 0.95rem;
+    }
+
+    .last-message {
+        font-size: 0.85rem;
+    }
+
+    .search-bar {
+        max-width: 100%; /* Make search bar responsive */
+    }
+}
+
+/* Mobile view (480px and below) */
+@media (max-width: 480px) {
+    .chat-list {
+        margin: 0;
+        width: 100%;
+    }
+
+    .search-bar {
+        padding: 8px 10px;
+    }
+
+    .search-bar input {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .conversations {
+        padding: 5px;
+    }
+
+    .conversation {
+        padding: 10px;
+    }
+
+    .user-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .username {
+        font-size: 0.85rem;
+    }
+
+    .last-message {
+        font-size: 0.8rem;
+    }
+}

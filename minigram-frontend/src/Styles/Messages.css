@@ -1,0 +1,206 @@
+/* App.css */
+
+/* Container for the whole messages page */
+.messages-page {
+    display: flex;
+    height: 100vh;
+}
+
+/* Left side: Conversation list */
+.chat-list {
+    width: 100%; /* Take full width on mobile */
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Search bar in conversation list */
+.search-bar {
+    
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.search-icon {
+    font-size: 1.2rem;
+    color: #888;
+}
+
+/* Conversations list */
+.conversations {
+    overflow-y: auto;
+    flex-grow: 1; /* Allow list to take remaining space */
+}
+
+.conversation {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.conversation:hover {
+    background-color: #f9f9f9;
+}
+
+.user-img {
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.username {
+    font-weight: bold;
+    margin: 0;
+}
+
+.last-message {
+    font-size: 0.9rem;
+    color: #888;
+    margin: 0;
+}
+
+/* Right side: Message thread */
+.message-thread {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Message thread header */
+.messages-header {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.messages-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Individual message styling */
+.message {
+    max-width: 60%;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+.message.received {
+    background-color: #f1f1f1;
+    align-self: flex-start;
+}
+
+.message.sent {
+    background-color: #3A213E;
+    color: white;
+    align-self: flex-end;
+}
+
+/* Input field at the bottom */
+.message-input {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.message-input input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.message-input .icon {
+    font-size: 1.5rem;
+    color: #888;
+}
+
+.message-input .send-icon {
+    cursor: pointer;
+    color: #3A213E;
+}
+
+/* Media Queries for responsiveness */
+
+/* Tablet view */
+@media (max-width: 768px) {
+    .chat-list {
+        margin-left: 0px; /* No margin on smaller screens */
+    }
+
+    .messages-page {
+        flex-direction: column; /* Stack vertically */
+    }
+
+    .chat-list {
+        width: 100%; /* Full width */
+        height: 40%; /* Set a fixed height */
+    }
+
+    .message-thread {
+        height: 60%; /* Remaining space for messages */
+        flex-grow: 1; /* Allow it to grow */
+    }
+
+    .messages-content {
+        padding: 15px; /* Adjust padding */
+    }
+
+    .message {
+        max-width: 80%; /* Allow more width for messages */
+    }
+}
+
+/* Mobile view */
+@media (max-width: 480px) {
+    .chat-list {
+        display: none; /* Hide the chat list on mobile */
+    }
+
+    .message-thread {
+        width: 100%; /* Take full width */
+    }
+
+    .messages-header {
+        padding: 10px; /* Adjust header padding */
+    }
+
+    .messages-content {
+        padding: 10px; /* Adjust message content padding */
+    }
+
+    .message {
+        max-width: 90%; /* Wider messages */
+        font-size: 0.9rem; /* Adjust font size */
+    }
+
+    .message-input {
+        padding: 5px 10px; /* Reduce padding */
+    }
+
+    .message-input input {
+        padding: 5px; /* Adjust input padding */
+    }
+
+    .message-input .icon {
+        font-size: 1.2rem; /* Adjust icon size */
+    }
+}

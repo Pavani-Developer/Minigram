@@ -1,0 +1,21 @@
+/* App.css */
+
+.app-container {
+  display: flex;
+}
+
+.content-container {
+  flex: 1;
+  padding: 20px; /* Add some padding for the content */
+}
+
+.full-width {
+  width: 100%; /* Make content take full width when Navbar is hidden */
+}
+
+/* Additional styles for responsiveness */
+@media (max-width: 768px) {
+  .content-container {
+      padding: 10px; /* Adjust padding for mobile view */
+  }
+}

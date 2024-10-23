@@ -1,0 +1,168 @@
+/* Container for the whole messages page */
+.messages-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin-left: 120px; /* For desktop view */
+}
+
+/* Header for chat page */
+.messages-header {
+    position: relative; /* For positioning the back icon */
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: center;
+    background-color: white;
+}
+
+/* Back button in the header (top-left corner) */
+.back-icon {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #007bff;
+}
+
+/* Header title styling */
+.messages-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Messages content area */
+.messages-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Individual message styling */
+.message {
+    max-width: 60%;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    word-wrap: break-word;
+}
+
+.message.received {
+    background-color: #f1f1f1;
+    align-self: flex-start;
+}
+
+.message.sent {
+    background-color: #007bff;
+    color: white;
+    align-self: flex-end;
+}
+
+/* Input area for typing a message */
+.message-input {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-top: 1px solid #e0e0e0;
+    background-color: white;
+}
+
+.message-input input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 20px;
+    background-color: #f1f1f1;
+}
+
+.message-input .icon {
+    font-size: 1.5rem;
+    color: #888;
+}
+
+.message-input .send-icon {
+    cursor: pointer;
+    color: #007bff;
+    margin-left: 10px;
+}
+
+/* Media Queries for responsiveness */
+
+/* Tablet view */
+@media (max-width: 768px) {
+    .messages-page {
+        margin-left: 0; /* Remove margin for smaller screens */
+    }
+
+    .messages-header h2 {
+        font-size: 1.2rem; /* Smaller font size for header */
+    }
+
+    .messages-content {
+        padding: 15px; /* Reduce padding for smaller screens */
+    }
+
+    .message {
+        max-width: 80%; /* Messages take more width */
+    }
+
+    .message-input input {
+        padding: 8px; /* Smaller padding for input field */
+    }
+
+    .message-input .icon {
+        font-size: 1.3rem; /* Slightly smaller icons */
+    }
+
+    .back-icon {
+        font-size: 1.3rem; /* Smaller back icon for tablets */
+        left: 10px; /* Adjust positioning */
+    }
+}
+
+/* Mobile view */
+@media (max-width: 480px) {
+    .messages-page {
+        margin-left: 0; /* Full width for mobile */
+    }
+
+    .messages-header h2 {
+        font-size: 1rem; /* Further reduce font size for mobile */
+    }
+
+    .messages-content {
+        padding: 10px; /* Reduce padding for mobile */
+    }
+
+    .message {
+        max-width: 90%; /* Messages take up more width */
+        font-size: 0.9rem; /* Smaller font for mobile */
+    }
+
+    .message-input {
+        padding: 5px 10px; /* Reduce input area padding */
+    }
+
+    .message-input input {
+        padding: 6px; /* Smaller input padding */
+    }
+
+    .message-input .icon {
+        font-size: 1.2rem; /* Adjust icon size for mobile */
+    }
+
+    .message-input .send-icon {
+        margin-left: 5px; /* Adjust spacing for mobile */
+    }
+
+    .back-icon {
+        font-size: 1.2rem; /* Smaller back icon for mobile */
+        left: 10px; /* Adjust positioning */
+    }
+}

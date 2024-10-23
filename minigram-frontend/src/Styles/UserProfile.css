@@ -1,0 +1,207 @@
+/* Main container for the profile page */
+.profile-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #262626;
+    margin-left: 250px; /* For desktop view */
+}
+
+/* Header: profile image and user info */
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #dbdbdb;
+    padding-bottom: 20px;
+    flex-wrap: wrap; /* Enable wrapping for smaller screens */
+}
+
+/* Profile image (circular) */
+.profile-img {
+    width: 120px; /* Adjusted for a more compact look */
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px; /* Space between image and text on small screens */
+}
+
+/* User information container */
+.user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 65%; /* Adjusted to fit smaller screens */
+}
+
+/* User meta: name and action buttons */
+.user-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Change to space-between for button alignment */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.user-meta h2 {
+    font-size: 24px; /* Reduced for better fit */
+    font-weight: 400;
+}
+
+/* Button group for Edit Profile and Logout */
+.button-group {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+
+/* Edit Profile Button */
+.edit-btn, .logout-btn {
+    background-color: #3A213E;
+    color: white;
+    border: none;
+    padding: 8px 12px; /* Adjusted padding */
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px; /* Reduced font size */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.edit-btn:hover, .logout-btn:hover {
+    background-color: #2c182e; /* Slightly darker on hover */
+}
+
+/* Stats (Posts, Followers, Following) */
+.stats {
+    display: flex;
+    justify-content: space-between;
+    max-width: 400px;
+    margin: 15px 0;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    font-weight: bold;
+    font-size: 16px; /* Adjusted for better visibility */
+}
+
+/* Bio Section */
+.bio-section {
+    margin-bottom: 20px;
+}
+
+.bio-section p {
+    margin: 5px 0;
+}
+
+.bio-section .website {
+    color: #00376b;
+    text-decoration: none;
+}
+
+.bio-section .website:hover {
+    text-decoration: underline;
+}
+
+/* Posts Grid */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.posts-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.posts-grid img:hover {
+    opacity: 0.8;
+}
+
+/* Responsive Design for Tablets */
+@media screen and (max-width: 768px) {
+    .profile-container {
+        margin-left: 0; /* Remove margin for smaller screens */
+    }
+
+    .user-info {
+        width: 100%;
+    }
+
+    .posts-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+    }
+
+    .stats {
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+       
+    }
+
+    .stat-number {
+        font-size: 16px;
+    }
+}
+
+/* Responsive Design for Mobile Devices */
+@media screen and (max-width: 480px) {
+    .profile-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 10px; /* Adjusted margin */
+    }
+
+    .profile-img {
+        width: 80px; /* Smaller profile image for mobile */
+        height: 80px; /* Smaller profile image for mobile */
+    }
+
+    .user-info {
+        width: 100%;
+        margin-top: 10px; /* Reduced space between image and text */
+        text-align: center;
+    }
+
+    .user-meta h2 {
+        font-size: 20px;
+        
+    }
+    .stats {
+        flex-direction: row; /* Keep stats in a row */
+        justify-content: center; /* Center stats */
+        margin-top: 10px; /* Added top margin */
+    }
+
+    .stat {
+        margin: 0 10px; /* Added horizontal margin for spacing */
+    }
+
+    .stat-number {
+        font-size: 14px; /* Adjusted font size */
+    }
+
+    .bio-section {
+        margin: 10px 0; /* Reduced margin */
+        padding: 0 10px; /* Padding for bio section */
+    }
+
+    .posts-grid {
+        grid-template-columns: repeat(3, 1fr); /* Maintain 3 columns on mobile */
+        grid-gap: 5px; /* Reduced gap between images */
+    }
+
+    .posts-grid img {
+        height: auto; /* Allow height to auto to maintain aspect ratio */
+        border-radius: 5px;
+    }
+}
