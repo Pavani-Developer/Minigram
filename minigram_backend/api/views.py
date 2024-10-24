@@ -11,11 +11,9 @@ from . models import *
 @api_view(['POST'])
 def registerView(request):
     email = request.data['email']
-    # first_name = request.data['first_name']
-    # last_name = request.data['last_name']
     username = request.data['username']
     password = request.data['password']
-    confirm_password = request.data['confirm_password']
+    confirm_password = request.data['confirmPassword']
     
     if password != confirm_password:
         return Response({"error": "Passwords do not match"}, status=status.HTTP_400_BAD_REQUEST)
