@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework import status
 from . models import *
+from .serializers import *
+from django.contrib.auth.models import User
 
 
 
@@ -24,6 +26,7 @@ def registerView(request):
     return Response({"success": "User registered successfully"}, status=status.HTTP_201_CREATED)
     
 @api_view(['GET'])  
-def getusersView(request):
-    users = User.objects.all()
-    return Response({"users": list(users.values())})
+def getuserView(request,username):
+    serializer = UserSerializer(User.objects.get(username=username), many=False)
+    users = serializer.data
+    return Response({"user": users})
