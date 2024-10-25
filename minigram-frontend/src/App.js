@@ -13,6 +13,7 @@ import CreatePost from './Pages/CreatePost';
 import './App.css';
 import EditProfile from './Pages/EditProfile';
 import PostDetail from './Pages/PostDetail';
+import ProtectedRoute from './Components/ProtectedRoute';
 
 
 const AppContent = () => {
@@ -31,7 +32,10 @@ const AppContent = () => {
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/messages/*" element={<Messages />} />
+          <ProtectedRoute>
           <Route path="/feed" element={<Feed />} />
+          </ProtectedRoute>
+          
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="/search" element={<Search />} />

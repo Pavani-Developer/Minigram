@@ -2,28 +2,57 @@ import React, { useState } from 'react';
 import { FaCircleUser, FaEye, FaEyeSlash } from "react-icons/fa6"; 
 import { Link } from 'react-router-dom';
 import '../Styles/Login.css';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
-const Login = ({ handleLogin }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); 
-  const [error, setError] = useState("");
 
-  const dummyCredentials = {
-    username: "testUser",
-    password: "testPass"
-  };
+const Login = () => {
 
-  const handleSubmit = (e) => {
+  const notifyError = () => toast.error('Invalid username or password');
+  const notifyIncompleteDetails = () => toast.error('Please fill in all the details');
+  const notifySuccess = () => toast.success('Login successful!');
+  const[showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(null);
+  
+  const [data,setData] = useState({
+    username: '',
+    password: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setData({
+      ...data,
+      [name]: value
+    })
+
+  }
+
+  const handleSubmit = async(e) => {
+    console.log(data)
     e.preventDefault();
-
-    if (username === dummyCredentials.username && password === dummyCredentials.password) {
-      handleLogin({ username });
+    if (!data.username || !data.password) {
+      notifyIncompleteDetails();
+      return;
     } else {
-      setError("Invalid username or password");
+      try {
+          const response = await axios.post('http://127.0.0.1:8000/api/token/',data);
+          localStorage.setItem('access_token', response.data.access);
+          localStorage.setItem('refresh_token', response.data.refresh);
+          console.log('Login Successful')
+          window.location.href = '/feed';
+          notifySuccess();
+        }catch(error){
+          console.log(error)
+          notifyError();
+          
+    
+          }
     }
-  };
-
+    
+  }
+    
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -37,8 +66,10 @@ const Login = ({ handleLogin }) => {
           <div className='input-container'>
             <input 
               type='text' 
+              id='username'
               placeholder='Username'
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={handleInputChange}
+              name='username'
               required 
             />
             <FaCircleUser className='icon' />
@@ -48,8 +79,10 @@ const Login = ({ handleLogin }) => {
             <input 
               type={showPassword ? 'text' : 'password'} 
               placeholder='Password'
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handleInputChange}
               autoComplete="off"  // Added
+              name='password'
+              id='password'
               required 
             />
             <span className='icon' onClick={togglePasswordVisibility}> 
@@ -64,14 +97,16 @@ const Login = ({ handleLogin }) => {
             <a href='#'>Forgot Password?</a>
           </div>
 
-          <button type='submit'><Link to='/feed'>Login</Link></button>
+          <button type='submit' onSubmit={handleSubmit}>Login</button>
         </form>
 
         <div className='register-link'>
           <p>Don't have an account? <Link to='/register'>Register</Link></p>
         </div>
       </div>
+      <ToastContainer/>
     </div>
+
   );
 };
 
