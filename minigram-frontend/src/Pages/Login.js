@@ -3,11 +3,15 @@ import { FaCircleUser, FaEye, FaEyeSlash } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import '../Styles/Login.css';
 import axios from 'axios';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from './../constants';
 import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Login = () => {
+  const navigate = useNavigate();
 
   const notifyError = () => toast.error('Invalid username or password');
   const notifyIncompleteDetails = () => toast.error('Please fill in all the details');
@@ -30,19 +34,19 @@ const Login = () => {
   }
 
   const handleSubmit = async(e) => {
-    console.log(data)
+    
     e.preventDefault();
     if (!data.username || !data.password) {
       notifyIncompleteDetails();
       return;
     } else {
       try {
-          const response = await axios.post('http://127.0.0.1:8000/api/token/',data);
-          localStorage.setItem('access_token', response.data.access);
-          localStorage.setItem('refresh_token', response.data.refresh);
-          console.log('Login Successful')
-          window.location.href = '/feed';
+          const res = await axios.post('http://127.0.0.1:8000/api/token/',data);
+          localStorage.setItem(ACCESS_TOKEN, res.data.access);
+                localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
           notifySuccess();
+          navigate('/feed'); 
+          
         }catch(error){
           console.log(error)
           notifyError();
