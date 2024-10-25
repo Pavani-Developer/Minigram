@@ -31,24 +31,71 @@ const AppContent = () => {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/messages/*" element={<Messages />} />
+
+          <Route 
+          path="/messages/*" 
+          element={
+            <ProtectedRoute>
+              <Messages />
+            </ProtectedRoute>}/>
           
           <Route 
           path="/feed"
           element={
-          <ProtectedRoute>
-            <Feed /> 
-          </ProtectedRoute>} 
-          />
+              <ProtectedRoute>
+                <Feed /> 
+              </ProtectedRoute>} />
          
           
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/edit-profile" element={<EditProfile />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/create" element={<CreatePost />} />
-          <Route path='/post-detail' element={<PostDetail />} />
-          <Route path="/notifications" element={<Notifications />} />
+          <Route 
+          path="/profile" 
+          element={
+            <ProtectedRoute>
+              <UserProfile /> 
+            </ProtectedRoute>} />
+
+          <Route 
+          path="/edit-profile" 
+          element={
+          <ProtectedRoute>
+            <EditProfile />
+            </ProtectedRoute>}/>
+
+          <Route 
+          path="/search" 
+          element={ 
+          <ProtectedRoute>
+            <Search />
+          </ProtectedRoute>} />
+
+          <Route 
+          path="/explore" 
+          element={
+          <ProtectedRoute>
+            <Explore />
+            </ProtectedRoute>} />
+
+          <Route 
+          path="/create" 
+          element={
+          <ProtectedRoute>
+            <CreatePost />
+            </ProtectedRoute>} />
+
+          <Route 
+          path='/post-detail' 
+          element={
+          <ProtectedRoute>
+            <PostDetail />
+          </ProtectedRoute>} />
+
+          <Route 
+          path="/notifications" 
+          element={
+          <ProtectedRoute>
+            <Notifications />
+          </ProtectedRoute>} />
+          
         </Routes>
       </div>
     </div>
