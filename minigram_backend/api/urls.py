@@ -12,4 +12,5 @@ urlpatterns = [
     path('user/<str:username>/', views.getuserView),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('user/profile/update/', views.user_profile_update, name='user-profile-update'),
 ]
