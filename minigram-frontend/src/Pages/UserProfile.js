@@ -2,14 +2,18 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'; // For navigation
 import '../Styles/UserProfile.css'; // Import the CSS
+import { useUser } from '../contexts/UserContext';
 
 const UserProfile = () => {
   const navigate = useNavigate();
 
+  const {userDetails} = useUser();
+  console.log(userDetails);
+
   // Dummy user data
   const userData = {
     profileImg: "https://picsum.photos/200", // Add profileImg property
-    name: 'user_name',
+    name: userDetails.user.username,
     email: 'user@example.com', // Add email property
     bio: 'This is a user bio description. Passionate about coding, photography, and traveling.',
     website: 'https://example.com',
@@ -30,7 +34,11 @@ const UserProfile = () => {
   return (
     <div className='profile-container'>
       <div className='profile-header'>
-        <img src={userData.profileImg} alt="user profile" className='profile-img' />
+        <img 
+        src={userData.profileImg} 
+        alt="user profile" 
+        className='profile-img' 
+        />
         <div className='user-info'>
           <div className='user-meta'>
             <h2>{userData.name}</h2>
@@ -59,9 +67,9 @@ const UserProfile = () => {
       <div className='bio-section'>
         <p><strong>{userData.name}</strong></p>
         <p>{userData.bio}</p>
-        <a href={userData.website} target='_blank' rel='noopener noreferrer' className='website'>
+        {/* <a href={userData.website} target='_blank' rel='noopener noreferrer' className='website'>
           {userData.website}
-        </a>
+        </a> */}
       </div>
 
       <div className='posts-grid'>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
@@ -14,6 +14,7 @@ import './App.css';
 import EditProfile from './Pages/EditProfile';
 import PostDetail from './Pages/PostDetail';
 import ProtectedRoute from './Components/ProtectedRoute';
+import { UserProvider } from './contexts/UserContext';
 
 
 const AppContent = () => {
@@ -24,16 +25,16 @@ const AppContent = () => {
 
   const hideNavbar = noNavbarPaths.includes(location.pathname);
 
-  useEffect (() =>{
-    const fetchUserProfile = async () =>{
-      try{
-        const respone = await axios.get(`http://127.0.0.1:8000/user/${username}/`),
-        setUserDetails(respone);
-      }catch(error){
-        console.log(error);
-      }
-    }
-  },[]);
+  // useEffect (() =>{
+  //   const fetchUserProfile = async () =>{
+  //     try{
+  //       const respone = await axios.get(`http://127.0.0.1:8000/user/${username}/`),
+  //       setUserDetails(respone);
+  //     }catch(error){
+  //       console.log(error);
+  //     }
+  //   }
+  // },[]);
 
   
   return (
@@ -119,7 +120,10 @@ const AppContent = () => {
 const App = () => {
   return (
     <BrowserRouter>
-      <AppContent />
+    <UserProvider>
+    <AppContent />
+    </UserProvider>
+      
     </BrowserRouter>
   );
 };

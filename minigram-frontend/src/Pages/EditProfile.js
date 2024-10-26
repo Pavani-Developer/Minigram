@@ -27,21 +27,30 @@ const EditProfile = () => {
 
   return (
     <div className='edit-profile-container'>
-      <h2>Edit Profile</h2>
+      <h1>{userName}</h1>
+      
       <div className='edit-profile-img'>
-        <img src={profileImage} alt="Profile" />
-        <button className='change-photo-btn'>Change Profile Photo</button>
+        <img 
+        src={profileImage} 
+        alt="Profile" />
+
+        <button 
+        className='change-photo-btn'>
+          Change Profile Photo
+        </button>
       </div>
 
       <form className='edit-profile-form' onSubmit={handleSaveChanges}>
         <div className='form-group'>
+
           <label>Username</label>
           <input
             type='text'
             value={userName}
-            onChange={(e) => setUsername(e.target.value)}
+
             required
           />
+
         </div>
 
         <div className='form-group'>

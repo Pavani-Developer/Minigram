@@ -7,11 +7,14 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from './../constants';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../contexts/UserContext';
 
 
 
 const Login = () => {
   const navigate = useNavigate();
+
+  const {userDetails,setUserDetails} = useUser();
 
   const notifyError = () => toast.error('Invalid username or password');
   const notifyIncompleteDetails = () => toast.error('Please fill in all the details');
@@ -43,9 +46,14 @@ const Login = () => {
       try {
           const res = await axios.post('http://127.0.0.1:8000/api/token/',data);
           localStorage.setItem(ACCESS_TOKEN, res.data.access);
-                localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+          localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
           notifySuccess();
           navigate('/feed'); 
+
+          //fetch user details
+          const user = await axios.get(`http://127.0.0.1:8000/user/${data.username}/`);
+          setUserDetails(user.data);
+          console.log(userDetails)
           
         }catch(error){
           console.log(error)
