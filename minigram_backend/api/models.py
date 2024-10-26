@@ -11,5 +11,13 @@ class RegisterUser(models.Model):
     def __str__(self):
         return self.username
     
+# class User(models.Model):
+#     registration = models.OneToOneField(User, on_delete=models.CASCADE)
+#     first_name = models.CharField(max_length=50, blank=True)
+#     last_name = models.CharField(max_length=50, blank=True)
+#     bio = models.TextField(blank=True)
+#     image = models.ImageField(upload_to='profiles/', blank=True)
 
+#     def __str__(self):
+#         return self.registration.username
     

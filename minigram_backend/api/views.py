@@ -20,7 +20,7 @@ def registerView(request):
     if password != confirm_password:
         return Response({"error": "Passwords do not match"}, status=status.HTTP_400_BAD_REQUEST)
     
-    user = User.objects.create_user(username, email, password)
+    user = RegisterUser.objects.create_user(username, email, password)
     user.save()
     
     return Response({"success": "User registered successfully"}, status=status.HTTP_201_CREATED)
