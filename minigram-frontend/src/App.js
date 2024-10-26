@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
@@ -20,9 +20,22 @@ const AppContent = () => {
   const userProfilePic = 'https://picsum.photos/50';
   const location = useLocation(); // Get current location
   const noNavbarPaths = ['/','/register'];
+  const [userDetails,setUserDetails] = useState({});
 
   const hideNavbar = noNavbarPaths.includes(location.pathname);
 
+  useEffect (() =>{
+    const fetchUserProfile = async () =>{
+      try{
+        const respone = await axios.get(`http://127.0.0.1:8000/user/${username}/`),
+        setUserDetails(respone);
+      }catch(error){
+        console.log(error);
+      }
+    }
+  },[]);
+
+  
   return (
     <div className="app-container">
       {/* Conditionally render Navbar if not on login or register page */}
