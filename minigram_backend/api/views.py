@@ -59,9 +59,11 @@ def getuserView(request,username):
 @api_view(['PUT', 'PATCH'])
 @permission_classes([IsAuthenticated])
 def user_profile_update(request):
+    print(request.method)
     try:
         # Get the user profile for the currently authenticated user
         user_profile = UserProfiles.objects.get(user=request.user)
+        print(user_profile)
     except UserProfiles.DoesNotExist:
         return Response({"detail": "User profile not found."}, status=status.HTTP_404_NOT_FOUND)
 

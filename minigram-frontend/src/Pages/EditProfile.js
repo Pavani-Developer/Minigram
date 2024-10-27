@@ -3,6 +3,7 @@ import React, { useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import '../Styles/EditProfile.css';
 import axios from 'axios';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 
 
 const EditProfile = () => {
@@ -12,13 +13,7 @@ const EditProfile = () => {
   const [userName, setUsername] = useState(name || "");
   const [userBio, setBio] = useState(bio || "");
   const [profileImage, setProfileImg] = useState(profileImg || "https://picsum.photos/200");
-  // // Initial state for form fields (could be pre-filled with user data)
-  // const [profileImage, setProfileImg] = useState(profileImg || "https://picsum.photos/200");
-  // // 
-  // // const [userEmail, setEmail] = useState(email || "");
-  // 
-
-  // Handle the form submission
+  
 
 
   const handleBioChange = (e) => setBio(e.target.value);
@@ -30,9 +25,9 @@ const EditProfile = () => {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    // You can handle the file upload or preview here
+    
     console.log(file);
-    // For example, you could display the selected image or upload it
+    
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,10 +37,10 @@ const EditProfile = () => {
       formData.append('image', profileImage);
     }// Logic to handle profile update (API call, etc.)
     try {
-      const response = await axios.patch('http://127.0.0.1:8000/user/profile/update/', formData, {
+      const response = await axios.patch('http://127.0.0.1:8000/user/profileupdate/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`, // Include access token if required
+          'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`, // Include access token if required
         },
       });
       console.log('Profile updated successfully:', response.data);
