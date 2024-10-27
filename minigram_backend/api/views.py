@@ -54,9 +54,7 @@ def getuserView(request,username):
     return Response({"user": users})
 
 
-
-
-@api_view(['PUT', 'PATCH'])
+@api_view(['POST'])  
 @permission_classes([IsAuthenticated])
 def user_profile_update(request):
     print(request.method)
@@ -77,3 +75,8 @@ def user_profile_update(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     
+api_view(['GET'])
+def user_data(request, userid):
+    user =  UserProfiles.objects.get(userid=userid)
+    serializer = UserProfileSerializer(user,many=True)
+    return Response(serializer.data)

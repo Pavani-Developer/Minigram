@@ -12,6 +12,7 @@ urlpatterns = [
     path('user/<str:username>/', views.getuserView),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('user/profileupdate/', views.user_profile_update, name='user-profile-update'),
+     path('user/profileupdate/', views.user_profile_update, name='user_profile_update'),
+    path('userdata/<str:username>/', views.user_data, name='user-data'),
 ]
 #http://127.0.0.1:8000/user/profile/update/
