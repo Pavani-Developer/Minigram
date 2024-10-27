@@ -57,25 +57,15 @@ def getuserView(request,username):
 @api_view(['POST'])  
 @permission_classes([IsAuthenticated])
 def user_profile_update(request):
-    print(request.method)
-    try:
-        # Get the user profile for the currently authenticated user
-        user_profile = UserProfiles.objects.get(user=request.user)
-        print(user_profile)
-    except UserProfiles.DoesNotExist:
-        return Response({"detail": "User profile not found."}, status=status.HTTP_404_NOT_FOUND)
-
-    # Deserialize the data
-    serializer = UserProfileSerializer(user_profile, data=request.data, partial=True)
-
-    if serializer.is_valid():
-        serializer.save()  # Save the updated profile
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    if request.method == 'POST':
+        serializer = UserProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     
-api_view(['GET'])
+@api_view(['GET'])
 def user_data(request, userid):
     user =  UserProfiles.objects.get(userid=userid)
     serializer = UserProfileSerializer(user,many=True)
