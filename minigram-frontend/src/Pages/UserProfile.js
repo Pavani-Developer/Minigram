@@ -34,6 +34,7 @@ const UserProfile = () => {
   return (
     <div className='profile-container'>
       <div className='profile-header'>
+        
         <img 
         src={userData.profileImg} 
         alt="user profile" 

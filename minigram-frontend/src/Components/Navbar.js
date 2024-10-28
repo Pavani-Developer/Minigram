@@ -9,7 +9,7 @@ const Navbar = ({ profilePic }) => {
     <div className='sidenav'>
       <div className='logo'>
         {/* Display user's profile picture */}
-        <img src={profilePic} alt="User Profile" className='profile-pic' />
+        <Link to='/profile'><img src={profilePic} alt="User Profile" className='profile-pic' /></Link>
       </div>
 
       <ul className='nav-items'>

@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
+import ForgotPasswordModal from '../Components/ForgotPasswordModal';
 
 
 
@@ -21,6 +22,7 @@ const Login = () => {
   const notifySuccess = () => toast.success('Login successful!');
   const[showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
   
   const [data,setData] = useState({
     username: '',
@@ -110,7 +112,7 @@ const Login = () => {
 
           <div className='remember-forgot'>
             
-            <a href='#'>Forgot Password?</a>
+          <a href='#' onClick={() => setModalOpen(true)}>Forgot Password?</a>
           </div>
 
           <button type='submit' onSubmit={handleSubmit}>Login</button>
@@ -121,6 +123,7 @@ const Login = () => {
         </div>
       </div>
       <ToastContainer/>
+      <ForgotPasswordModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
 
   );
