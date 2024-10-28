@@ -16,7 +16,7 @@ input[type="password"]::-webkit-calendar-picker-indicator {
     align-items: center; /* Center vertically */
     height: 100vh; /* Full height of the viewport */
     margin: 0; /* Remove default margin */
-    background-color: #f0f0f0; /* Optional: Set a background color for contrast */
+     /* Optional: Set a background color for contrast */
   }
   
   /* Existing styles */

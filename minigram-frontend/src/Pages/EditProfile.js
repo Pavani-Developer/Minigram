@@ -37,8 +37,7 @@ const EditProfile = () => {
     try {
       const response = await axios.post('http://127.0.0.1:8000/user/profileupdate/', formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
-          'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`,
+          'Content-Type': 'multipart/form-data',  // For file upload
         },
       });
       console.log('Profile updated successfully:', response.data);
@@ -46,7 +45,6 @@ const EditProfile = () => {
       console.error('Error updating profile:', error);
     }
   };
-
   const handleCancel = () => {
     console.log("Profile update canceled");
   };

@@ -53,7 +53,25 @@ def getuserView(request,username):
     # Return a JSON response with the user's information
     return Response({"user": users})
 
+@api_view(['POST'])
+def update_profile(request):
+    user_id = request.data.get('user_id')
+    bio = request.data.get('bio')
+    image = request.FILES.get('image')  # Use FILES to access uploaded image
 
+    try:
+        user_profile = UserProfiles.objects.get(user_id=user_id)
+        if bio is not None:
+            user_profile.bio = bio
+        if image is not None:
+            user_profile.image = image
+        user_profile.save()
+
+        return Response({"message": "Profile updated successfully"}, status=status.HTTP_200_OK)
+    except UserProfiles.DoesNotExist:
+        return Response({"error": "User profile not found"}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
     
 @api_view(['GET'])
 def user_data(request, userid):

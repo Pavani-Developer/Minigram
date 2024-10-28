@@ -8,10 +8,10 @@ from . import views
 
 urlpatterns = [
     path('registeruser/', views.registerView),
-    # path('userslist/', views.getusersView),
     path('user/<str:username>/', views.getuserView),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/userprofile/update', views.update_profile, name='user-profile-update'),
     path('userdata/<str:username>/', views.user_data, name='user-data'),
 ]
 #http://127.0.0.1:8000/user/profile/update/
