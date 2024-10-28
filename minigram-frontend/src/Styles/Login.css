@@ -80,20 +80,22 @@ input[type="password"]::-webkit-calendar-picker-indicator {
   
   .login-body .remember-forgot {
     display: flex;
-    justify-content: space-between;
+  
     font-size: 14px;
     margin: -10px 0 20px;
   }
   
   .login-body .remember-forgot label {
     display: flex;
-    align-items: center;
+
     color: #121212;
+    margin-right: 50px;
   }
   
   .login-body .remember-forgot a {
     color: #363535;
     text-decoration: none;
+    margin-top: 20px;
   }
   
   .login-body .remember-forgot a:hover {
