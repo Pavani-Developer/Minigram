@@ -25,21 +25,9 @@ const AppContent = () => {
 
   const hideNavbar = noNavbarPaths.includes(location.pathname);
 
-  // useEffect (() =>{
-  //   const fetchUserProfile = async () =>{
-  //     try{
-  //       const respone = await axios.get(`http://127.0.0.1:8000/user/${username}/`),
-  //       setUserDetails(respone);
-  //     }catch(error){
-  //       console.log(error);
-  //     }
-  //   }
-  // },[]);
-
   
   return (
     <div className="app-container">
-      {/* Conditionally render Navbar if not on login or register page */}
       {!hideNavbar && <Navbar profilePic={userProfilePic} />}
       <div className={`content-container ${hideNavbar ? 'full-width' : ''}`}>
         <Routes>
