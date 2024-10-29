@@ -2,8 +2,9 @@
 .messages-page {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    margin-left: 120px; /* For desktop view */
+    height: 94vh;
+    margin-left: 120px; 
+    ;/* For desktop view */
 }
 
 /* Header for chat page */
@@ -91,6 +92,14 @@
     color: #007bff;
     margin-left: 10px;
 }
+
+.emoji-picker {
+    position: absolute; /* Position it above the input */
+    bottom: 70px; /* Adjust based on your layout */
+    left: 20px; /* Adjust according to your layout */
+    z-index: 1000; /* Ensure it appears above other elements */
+  }
+  
 
 /* Media Queries for responsiveness */
 

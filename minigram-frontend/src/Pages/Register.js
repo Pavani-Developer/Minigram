@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import '../Styles/Register.css';
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { FaRegUserCircle } from "react-icons/fa";
-import { RiLockPasswordLine, RiLockPasswordFill } from "react-icons/ri";
+import { FaEye, FaEyeSlash } from "react-icons/fa6"; // Import eye icons
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [data, setData] = useState({
@@ -15,10 +15,13 @@ const Register = () => {
     confirmPassword: ''
   });
 
-  const notifySuccess = () => toast.success("Registration is successfull!");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const notifySuccess = () => toast.success("Registration is successful!");
   const notifyError = () => toast.error("Registration failed!");
-  const notifypasswordIncorrect = () => toast.error("Passwords do not match!");
-  const notifyIncompleteDetails = () =>toast.error("Please fill in all the details!");
+  const notifyPasswordIncorrect = () => toast.error("Passwords do not match!");
+  const notifyIncompleteDetails = () => toast.error("Please fill in all the details!");
 
   function handleInputChange(e) {
     const { name, value } = e.target;
@@ -29,27 +32,28 @@ const Register = () => {
   }
 
   const handleSubmit = async () => {
-    if (!data.email || !data.username || !data.password || !data.confirmPassword){
+    if (!data.email || !data.username || !data.password || !data.confirmPassword) {
       notifyIncompleteDetails();
       return;
     }
     if (data.password !== data.confirmPassword) {
-      notifypasswordIncorrect();
+      notifyPasswordIncorrect();
       return;
-    }else{
+    } else {
       try {
         const response = await axios.post('http://127.0.0.1:8000/registeruser/', data);
-        console.log('Registered Successfully ');
+        console.log('Registered Successfully');
         notifySuccess();
         window.location.href = '/';
-        
       } catch (error) {
         console.error('Registration failed:', error.response ? error.response.data : error.message);
         notifyError();
       }
     }
+  };
 
-    };
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+  const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
 
   return (
     <>
@@ -57,9 +61,9 @@ const Register = () => {
         <h1>Register</h1>
 
         <div className='input-container'>
-          <input 
-            type="email" 
-            id='email' 
+          <input
+            type="email"
+            id='email'
             name='email'
             placeholder='Email'
             onChange={handleInputChange}
@@ -69,10 +73,10 @@ const Register = () => {
         </div>
 
         <div className='input-container'>
-          <input 
-            type="text" 
-            id='username' 
-            name='username' 
+          <input
+            type="text"
+            id='username'
+            name='username'
             placeholder='Username'
             onChange={handleInputChange}
             required
@@ -81,35 +85,36 @@ const Register = () => {
         </div>
 
         <div className='input-container'>
-          <input 
-            type="password" 
-            id='password' 
+          <input
+            type={showPassword ? "text" : "password"}
+            id='password'
             name='password'
             placeholder='Password'
             onChange={handleInputChange}
             required
           />
-          
+          <span className='icon' onClick={togglePasswordVisibility}>
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
         </div>
 
         <div className='input-container'>
-          <input 
-            type="password" 
-            id='confirmPassword' 
+          <input
+            type={showConfirmPassword ? "text" : "password"}
+            id='confirmPassword'
             name='confirmPassword'
             placeholder='Confirm Password'
             onChange={handleInputChange}
             required
           />
-         
+          <span className='icon' onClick={toggleConfirmPasswordVisibility}>
+            {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
         </div>
 
         <button type='button' onClick={handleSubmit}>Register</button>
       </div>
-      <ToastContainer        // Position the toast
-  style={{ width: "100%" }}     // Ensure full width on smaller devices
-/>
-
+      <ToastContainer style={{ width: "100%" }} />
     </>
   );
 }

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
-import { FaPaperPlane, FaSmile, FaArrowLeft } from 'react-icons/fa'; // Import FaArrowLeft for back icon
+import { useParams, useNavigate } from 'react-router-dom'; 
+import { FaPaperPlane, FaSmile, FaArrowLeft } from 'react-icons/fa'; 
+import  EmojiPicker  from 'emoji-picker-react'; // Import the emoji picker
 import '../Styles/ChatView.css';
 
 const ChatView = () => {
-  const { id } = useParams(); // Get the user ID from the URL
+  const { id } = useParams(); 
   const [message, setMessage] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false); // State to control emoji picker visibility
+  const navigate = useNavigate(); 
 
   const handleSendMessage = () => {
     if (message.trim()) {
@@ -15,9 +17,8 @@ const ChatView = () => {
     }
   };
 
-  // Function to handle back button click
   const handleGoBack = () => {
-    navigate('/messages'); // Navigate back to the chat list
+    navigate('/messages'); 
   };
 
   // Placeholder for message data
@@ -27,10 +28,16 @@ const ChatView = () => {
     // More messages as needed
   ];
 
+  // Function to handle emoji selection
+  const handleEmojiClick = (emojiObject) => {
+    setMessage((prev) => prev + emojiObject.emoji); // Append selected emoji to message
+    setShowEmojiPicker(false); // Close the emoji picker after selection
+  };
+
   return (
     <div className='messages-page'>
       <div className='messages-header'>
-        <FaArrowLeft className='back-icon' onClick={handleGoBack} /> {/* Back button */}
+        <FaArrowLeft className='back-icon' onClick={handleGoBack} />
         <h2>Chat with {id === '1' ? 'User 1' : 'User 2'}</h2>
       </div>
       <div className='messages-content'>
@@ -41,7 +48,7 @@ const ChatView = () => {
         ))}
       </div>
       <div className='message-input'>
-        <FaSmile className='icon' />
+        <FaSmile className='icon' onClick={() => setShowEmojiPicker((prev) => !prev)} /> {/* Toggle emoji picker */}
         <input
           type='text'
           placeholder='Type a message...'
@@ -50,6 +57,11 @@ const ChatView = () => {
         />
         <FaPaperPlane className='icon send-icon' onClick={handleSendMessage} />
       </div>
+      {showEmojiPicker && (
+        <div className='emoji-picker'>
+          <EmojiPicker onEmojiClick={handleEmojiClick} />
+        </div>
+      )}
     </div>
   );
 };

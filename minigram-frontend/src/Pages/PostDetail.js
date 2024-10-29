@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'; // Import necessary hooks
-import '../Styles/PostDetails.css'; // Import your CSS for styling
+import { useLocation, useNavigate } from 'react-router-dom'; 
+import '../Styles/PostDetails.css'; 
 
 const PostDetail = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { post } = location.state || {}; // Get post data passed from the Feed component
-  const [comments, setComments] = useState(post ? post.comments : []); // Initialize comments state
+  const { post } = location.state || {}; 
+  const [comments, setComments] = useState(post ? post.comments : []);
+  const [showComments, setShowComments] = useState(false); // State to control comment visibility
 
   const handleBack = () => {
-    navigate(-1); // Navigate back to the previous page
+    navigate(-1); 
   };
 
   const handleCommentSubmit = (event) => {
     event.preventDefault();
-    const commentInput = event.target.comment.value.trim(); // Get comment input
+    const commentInput = event.target.comment.value.trim();
 
     if (commentInput) {
-      setComments((prevComments) => [...prevComments, commentInput]); // Add new comment
-      event.target.reset(); // Reset the form
+      setComments((prevComments) => [...prevComments, commentInput]);
+      event.target.reset(); 
     }
+  };
+
+  const toggleComments = () => {
+    setShowComments((prev) => !prev); // Toggle the comments section visibility
   };
 
   return (
@@ -37,31 +42,33 @@ const PostDetail = () => {
           </div>
           <div className="post-actions">
             <button className="like-button">❤️ {post.likes}</button>
-            <button className="comment-button">
+            <button className="comment-button" onClick={toggleComments}>
               💬 {comments.length}
             </button>
           </div>
 
           {/* Comments Section */}
-          <div className="comments-section">
-            <form onSubmit={handleCommentSubmit} className="comment-form">
-              <input
-                type="text"
-                name="comment"
-                placeholder="Add a comment..."
-                className="comment-input"
-                required
-              />
-              <button type="submit" className="comment-submit">Post</button>
-            </form>
-            <div className="comments-list">
-              {comments.map((comment, index) => (
-                <div key={index} className="comment">
-                  <strong>{post.user}</strong>: {comment}
-                </div>
-              ))}
+          {showComments && (
+            <div className="comments-section">
+              <form onSubmit={handleCommentSubmit} className="comment-form">
+                <input
+                  type="text"
+                  name="comment"
+                  placeholder="Add a comment..."
+                  className="comment-input"
+                  required
+                />
+                <button type="submit" className="comment-submit">Post</button>
+              </form>
+              <div className="comments-list">
+                {comments.map((comment, index) => (
+                  <div key={index} className="comment">
+                    <strong>{post.user}</strong>: {comment}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       ) : (
         <p>No post data available.</p>
