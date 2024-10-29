@@ -89,7 +89,7 @@ const Register = () => {
             onChange={handleInputChange}
             required
           />
-          <RiLockPasswordLine className='icon' />
+          
         </div>
 
         <div className='input-container'>
@@ -101,7 +101,7 @@ const Register = () => {
             onChange={handleInputChange}
             required
           />
-          <RiLockPasswordFill className='icon' />
+         
         </div>
 
         <button type='button' onClick={handleSubmit}>Register</button>
