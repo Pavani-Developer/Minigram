@@ -17,9 +17,10 @@ import ProtectedRoute from './Components/ProtectedRoute';
 import { UserProvider } from './contexts/UserContext';
 
 
+
 const AppContent = () => {
   const userProfilePic = 'https://picsum.photos/50';
-  const location = useLocation(); // Get current location
+  const location = useLocation(); 
   const noNavbarPaths = ['/','/register'];
   const [userDetails,setUserDetails] = useState({});
 
