@@ -74,14 +74,14 @@
         padding: 0;
         z-index: 1000; 
         box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
-        background-color: white; /* Set a background color */
+        background-color: white; 
     }
 
     .nav-items {
         display: flex;
         justify-content: space-evenly;
         width: 100%;
-        overflow-x: auto; /* Allow horizontal scrolling if needed */
+        overflow-x: auto; 
     }
 
     .nav-items li {
@@ -89,15 +89,15 @@
     }
 
     .nav-items .nav-text {
-        display: none; /* Hide text on mobile to save space */
+        display: none; 
     }
 
     .logo .profile-pic {
-        display: none; /* Hide the profile picture in mobile view */
+        display: none; 
     }
 
     .nav-items .icon {
-        font-size: 20px; /* Keep icon size appropriate */
+        font-size: 20px; 
     }
 }
 
