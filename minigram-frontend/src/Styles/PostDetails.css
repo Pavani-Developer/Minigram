@@ -10,22 +10,22 @@
 
 /* Back button styling */
 .back-button {
-    position: relative; /* Positioning for absolute child elements */
-    margin-bottom: 15px; /* Space below the button */
-    cursor: pointer; /* Pointer cursor on hover */
+    position: relative; 
+    margin-bottom: 15px; 
+    cursor: pointer; 
 }
 
 /* Back arrow styling */
 .back-arrow {
-    font-size: 24px; /* Size of the arrow */
-    color: #3A213E; /* Color for the arrow */
+    font-size: 24px; 
+    color: #3A213E; 
 }
 
 /* Post image styling */
 .post-detail-image {
-    width: 100%; /* Full width */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 8px; /* Rounded corners */
+    width: 100%; 
+    height: auto; 
+    border-radius: 8px; 
 }
 
 /* Header for post details */
