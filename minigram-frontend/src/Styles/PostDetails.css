@@ -52,9 +52,9 @@
 
 /* Caption styling */
 .post-detail-caption {
-    margin: 10px 0; /* Space above and below caption */
-    font-size: 14px; /* Slightly smaller font size for cleaner look */
-    color: #333; /* Dark gray color */
+    margin: 10px 0; 
+    font-size: 14px; 
+    color: #333; 
 }
 
 /* Comments section styling */
