@@ -21,8 +21,8 @@ input[type="password"]::-webkit-calendar-picker-indicator {
   
   /* Existing styles */
   .login-body {
-    width: 80%; /* Allow it to take full width */
-    max-width: 400px; /* Increase the max width */
+    width: 80%; 
+    max-width: 400px; 
     padding: 20px;
     border: 1px solid black;
     text-align: center;

@@ -103,6 +103,6 @@
 
 @media (max-width: 480px) {
     .nav-items .icon {
-        font-size: 16px; /* Reduce icon size on smaller screens */
+        font-size: 16px; 
     }
 }
