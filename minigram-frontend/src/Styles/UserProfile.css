@@ -21,11 +21,12 @@
 
 /* Profile image (circular) */
 .profile-img {
-    width: 120px; /* Adjusted for a more compact look */
-    height: 120px;
+    width: 150px; /* Adjusted for a more compact look */
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 15px; /* Space between image and text on small screens */
+    margin-bottom: 15px;
+     margin-left: 100px; /*Space between image and text on small screens */
 }
 
 /* User information container */
@@ -162,8 +163,9 @@
     }
 
     .profile-img {
-        width: 80px; /* Smaller profile image for mobile */
-        height: 80px; /* Smaller profile image for mobile */
+        width: 150px; /* Smaller profile image for mobile */
+        height: 150px;
+        margin-left: 0; /* Smaller profile image for mobile */
     }
 
     .user-info {
