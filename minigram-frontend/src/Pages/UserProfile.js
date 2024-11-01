@@ -34,9 +34,9 @@ const UserProfile = () => {
     fetchUserData();
   }, []);
   const userData = {
-    profileImg: biodata.image, // Add profileImg property
+    profileImg: biodata.image ? `http://127.0.0.1:8000${biodata.image}` : '',//Add profileImg property
     name: userDetails.user.username,
-    email: 'user@example.com', // Add email property
+    email: userDetails.user.email, // Add email property
     bio: biodata.bio,
     website: 'https://example.com',
     posts: 48,
