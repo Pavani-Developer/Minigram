@@ -1,21 +1,43 @@
 // UserProfile.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // For navigation
 import '../Styles/UserProfile.css'; // Import the CSS
 import { useUser } from '../contexts/UserContext';
+import axios from 'axios';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from './../constants';
+
 
 const UserProfile = () => {
   const navigate = useNavigate();
 
   const {userDetails} = useUser();
-  console.log(userDetails);
-
+  const [biodata,setBiodata] = useState([])
   // Dummy user data
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/userdata/${userDetails.user.id}/`, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`, // Use quotes for the key
+          },
+        });
+        // Do something with the response, e.g., set user data to state
+        setBiodata(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
   const userData = {
-    profileImg: "https://picsum.photos/200", // Add profileImg property
+    profileImg: biodata.image, // Add profileImg property
     name: userDetails.user.username,
     email: 'user@example.com', // Add email property
-    bio: 'This is a user bio description. Passionate about coding, photography, and traveling.',
+    bio: biodata.bio,
     website: 'https://example.com',
     posts: 48,
     followers: '1.2k',

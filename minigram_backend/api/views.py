@@ -57,13 +57,10 @@ def getuserView(request,username):
 def update_profile(request):
     user_id = request.data.get('user_id')
     bio = request.data.get('bio')
-    image = request.FILES.get('image') 
-    print(image)# Use FILES to access uploaded image
+    image = request.FILES.get('image')  # Use FILES to access uploaded image
 
     try:
         user_profile = UserProfiles.objects.get(user_id=user_id)
-        print(user_profile)
-        print(user_id)
         if bio is not None:
             user_profile.bio = bio
         if image is not None:
@@ -78,6 +75,12 @@ def update_profile(request):
     
 @api_view(['GET'])
 def user_data(request, id):
-    user =  UserProfiles.objects.get(id=id)
-    serializer = UserProfileSerializer(user)
-    return Response(serializer.data)
+    try:
+        # Use select_related to fetch the UserProfile along with User in a single query
+        user_profile = UserProfiles.objects.select_related('user').get(user__id=id)
+        
+        # Serialize the user profile data
+        serializer = UserProfileSerializer(user_profile)
+        return Response(serializer.data)
+    except UserProfiles.DoesNotExist:
+        return Response({'error': 'User profile not found'}, status=404)

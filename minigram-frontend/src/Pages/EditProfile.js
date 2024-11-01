@@ -4,6 +4,8 @@ import '../Styles/EditProfile.css';
 import axios from 'axios';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 import { useUser } from '../contexts/UserContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const EditProfile = () => {
   const {userDetails} = useUser();
@@ -15,6 +17,10 @@ const EditProfile = () => {
   const [profileImage, setProfileImg] = useState(profileImg || "https://picsum.photos/200");
 
   const handleBioChange = (e) => setBio(e.target.value);
+
+
+  const notifySuccess = () => toast.success("Profile Updated successfully!");
+
 
   const handleChangePhotoClick = () => {
     fileInputRef.current.click();
@@ -40,7 +46,9 @@ const EditProfile = () => {
           'Content-Type': 'multipart/form-data',  // For file upload
         },
       });
-      console.log('Profile updated successfully:', response.data);
+      console.log('Profile updated successfully:', formData);
+      console.log(userDetails.user.id)
+      notifySuccess();
     } catch (error) {
       console.error('Error updating profile:', error);
     }
@@ -77,7 +85,9 @@ const EditProfile = () => {
           </button>
         </div>
       </form>
+      <ToastContainer style={{ width: "100%" }} />
     </div>
+    
   );
 };
 
