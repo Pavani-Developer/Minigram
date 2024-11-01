@@ -35,7 +35,7 @@ const EditProfile = () => {
     }
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/user/profileupdate/', formData, {
+      const response = await axios.post('http://127.0.0.1:8000/api/userprofile/update', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',  // For file upload
         },

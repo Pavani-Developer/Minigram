@@ -57,10 +57,13 @@ def getuserView(request,username):
 def update_profile(request):
     user_id = request.data.get('user_id')
     bio = request.data.get('bio')
-    image = request.FILES.get('image')  # Use FILES to access uploaded image
+    image = request.FILES.get('image') 
+    print(image)# Use FILES to access uploaded image
 
     try:
         user_profile = UserProfiles.objects.get(user_id=user_id)
+        print(user_profile)
+        print(user_id)
         if bio is not None:
             user_profile.bio = bio
         if image is not None:
@@ -74,7 +77,7 @@ def update_profile(request):
         return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
     
 @api_view(['GET'])
-def user_data(request, userid):
-    user =  UserProfiles.objects.get(userid=userid)
-    serializer = UserProfileSerializer(user,many=True)
+def user_data(request, id):
+    user =  UserProfiles.objects.get(id=id)
+    serializer = UserProfileSerializer(user)
     return Response(serializer.data)
