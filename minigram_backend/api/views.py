@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework import status
 from . models import *
-
+import os
 from .serializers import *
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated
@@ -61,10 +61,16 @@ def update_profile(request):
 
     try:
         user_profile = UserProfiles.objects.get(user_id=user_id)
+
+        # Check if a new image is being uploaded and delete the old one if it exists
+        if image is not None:
+            if user_profile.image and os.path.isfile(user_profile.image.path):
+                os.remove(user_profile.image.path)
+            user_profile.image = image
+
         if bio is not None:
             user_profile.bio = bio
-        if image is not None:
-            user_profile.image = image
+
         user_profile.save()
 
         return Response({"message": "Profile updated successfully"}, status=status.HTTP_200_OK)
@@ -72,7 +78,6 @@ def update_profile(request):
         return Response({"error": "User profile not found"}, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
-    
 @api_view(['GET'])
 def user_data(request, id):
     try:
