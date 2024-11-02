@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import '../Styles/CreatePost.css';
 import { FaImage } from 'react-icons/fa';
+import axios from 'axios';
 
 const CreatePost = () => {
   const [caption, setCaption] = useState('');
   const [image, setImage] = useState(null);
 
-  const handleImageChange = (e) => {
+  const handleImageChange =  (e) => {
     if (e.target.files && e.target.files[0]) {
       setImage(URL.createObjectURL(e.target.files[0]));
     }
   };
 
-  const handleSubmit = (e) => {
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle post submission logic here
+    const response = await axios.post() 
     console.log('Post submitted:', { caption, image });
   };
 
