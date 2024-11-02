@@ -14,5 +14,6 @@ urlpatterns = [
     path('api/userprofile/update', views.update_profile, name='user-profile-update'),
     path('userdata/<int:id>/', views.user_data, name='user-data'),
     path('create-post',views.createPost, name='user-create-post'),
+    path('get-posts',views.get_posts, name='user-get-posts'),
 ]
 #http://127.0.0.1:8000/user/profile/update/

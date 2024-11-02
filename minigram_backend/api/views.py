@@ -91,10 +91,44 @@ def user_data(request, id):
         return Response({'error': 'User profile not found'}, status=404)
     
     
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Post  # Import the Post model if necessary
+from .serializers import PostSerializer  # Import the serializer for Post
+
 @api_view(['POST'])
 def createPost(request):
-    serializer = PostSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    try:
+        # Get the data from the request
+        user_id = request.data.get('user_id')
+        caption = request.data.get('caption')
+        image = request.FILES.get('image')  # Use FILES to get uploaded file
+
+        # Create a dictionary for the serializer input
+        data = {
+            'user': user_id,  # Ensure your serializer accepts this field correctly
+            'caption': caption,
+            'image': image,
+        }
+
+        serializer = PostSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    except Exception as e:
+        print(f"Error occurred: {e}")
+        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['GET'])
+def get_posts(request):
+    try:
+        posts = Post.objects.all()
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data)
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

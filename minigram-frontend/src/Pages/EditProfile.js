@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../Styles/EditProfile.css';
 import axios from 'axios';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
@@ -10,7 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const EditProfile = () => {
   const {userDetails} = useUser();
   const fileInputRef = useRef(null);
-  const location = useLocation(); // Access location to get state
+  const location = useLocation(); 
+  const navigate = useNavigate(); // Access location to get state
   const { profileImg, bio, name, userId } = location.state || {}; // Destructure user data including userId
   const [userName, setUsername] = useState(name || "");
   const [userBio, setBio] = useState(bio || "");
@@ -49,11 +50,13 @@ const EditProfile = () => {
       console.log('Profile updated successfully:', formData);
       console.log(userDetails.user.id)
       notifySuccess();
+      navigate('/profile'); 
     } catch (error) {
       console.error('Error updating profile:', error);
     }
   };
   const handleCancel = () => {
+    navigate('/profile'); 
     console.log("Profile update canceled");
   };
 

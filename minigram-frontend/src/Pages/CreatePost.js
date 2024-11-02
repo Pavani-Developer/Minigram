@@ -1,25 +1,39 @@
 import React, { useState } from 'react';
 import '../Styles/CreatePost.css';
 import { FaImage } from 'react-icons/fa';
+import { useUser } from '../contexts/UserContext';
 import axios from 'axios';
 
 const CreatePost = () => {
   const [caption, setCaption] = useState('');
   const [image, setImage] = useState(null);
+  const { userDetails } = useUser(); // Use object destructuring to get userDetails
 
-  const handleImageChange =  (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setImage(URL.createObjectURL(e.target.files[0]));
+const handleImageChange = (e) => {
+  const file = e.target.files[0];
+  setImage(file);
     }
-  };
-
-
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle post submission logic here
-    const response = await axios.post() 
-    console.log('Post submitted:', { caption, image });
+    const formData = new FormData();
+    formData.append('caption', caption);
+    formData.append('user_id', userDetails.user.id); // Add the userId to the form data
+    if (image) {
+      formData.append('image', image);
+    }
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/create-post', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data', // For file upload
+        },
+      });
+      console.log('Post created successfully:', response.data);
+      console.log(userDetails.user.id);
+    } catch (error) {
+      console.error('Error creating post:', error);
+    }
   };
 
   return (
