@@ -30,11 +30,12 @@
   }
   
   .change-photo-btn {
-    background-color: transparent;
+    background-color: none;
     border: none;
     color: #007bff;
     cursor: pointer;
     font-weight: bold;
+    background: none;
   }
   
   .change-photo-btn:hover {
@@ -76,17 +77,15 @@
   
   .save-btn,
   .cancel-btn {
-    background-color: #007bff;
+    width: 20%;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 20px ;
     border-radius: 5px;
     cursor: pointer;
+    margin: 10px;
   }
   
-  .cancel-btn {
-    background-color: #ff6b81;
-  }
   
   .save-btn:hover,
   .cancel-btn:hover {

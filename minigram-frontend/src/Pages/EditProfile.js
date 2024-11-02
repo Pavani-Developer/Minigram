@@ -79,10 +79,11 @@ const EditProfile = () => {
           <textarea value={userBio} onChange={handleBioChange} rows='3' />
         </div>
         <div className='edit-profile-buttons'>
-          <button type='submit' className='save-btn'>Save Changes</button>
-          <button type='button' className='cancel-btn' onClick={handleCancel}>
+        <button type='button' className='cancel-btn' onClick={handleCancel}>
             Cancel
           </button>
+          <button type='submit' className='save-btn'>Save</button>
+          
         </div>
       </form>
       <ToastContainer style={{ width: "100%" }} />
