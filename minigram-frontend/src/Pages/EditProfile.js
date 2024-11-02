@@ -72,6 +72,7 @@ const EditProfile = () => {
           onChange={handleFileChange} 
           accept="image/*" 
         />
+        // Add file input
       </div>
       <form className='edit-profile-form' onSubmit={handleSubmit}>
         <div className='form-group'>
