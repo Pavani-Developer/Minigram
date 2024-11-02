@@ -89,3 +89,12 @@ def user_data(request, id):
         return Response(serializer.data)
     except UserProfiles.DoesNotExist:
         return Response({'error': 'User profile not found'}, status=404)
+    
+    
+@api_view(['POST'])
+def createPost(request):
+    serializer = PostSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

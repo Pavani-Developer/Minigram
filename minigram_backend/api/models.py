@@ -9,3 +9,14 @@ class UserProfiles(models.Model):
     def __str__(self):
         
         return self.user.username
+
+class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='posts/', blank=True, null=True)
+    caption = models.TextField(blank=True, null=True)
+    likes_count = models.IntegerField(default=0)
+    comments_count = models.IntegerField(default=0)
+    is_published = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.user.username

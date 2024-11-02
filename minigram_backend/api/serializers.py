@@ -12,3 +12,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfiles
         fields = ['bio', 'image']  # Specify the fields you want to update
+        
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = '__all__'
