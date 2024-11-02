@@ -3,8 +3,11 @@ import '../Styles/Navbar.css';
 import { FaHome, FaSearch, FaRegCompass, FaRegHeart, FaUserAlt,FaPlusSquare, FaPaperPlane } from 'react-icons/fa';
 
 import {Link} from 'react-router-dom';
+import { useUser } from '../contexts/UserContext';
 
-const Navbar = ({ profilePic }) => {
+const Navbar = () => {
+
+  const [userDetails] = useUser();
   return (
     <div className='sidenav'>
       <div className='logo'>

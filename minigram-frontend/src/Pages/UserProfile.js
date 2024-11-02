@@ -4,11 +4,13 @@ import '../Styles/UserProfile.css'; // Import the CSS
 import { useUser } from '../contexts/UserContext';
 import axios from 'axios';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from './../constants';
+import { useUserProfile } from '../contexts/UserProfileContext';
 
 const UserProfile = () => {
   const navigate = useNavigate();
   const { userDetails } = useUser();
   const [biodata, setBiodata] = useState([]);
+  const [userProfile, setUserProfile] = useUserProfile();
 
   // Move the useEffect outside the conditional block
   useEffect(() => {
@@ -21,8 +23,8 @@ const UserProfile = () => {
               'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`,
             },
           });
-          setBiodata(response.data);
-          console.log(response.data);
+          setUserProfile(response.data);
+          console.log(userProfile);
         } catch (error) {
           console.error('Error fetching user data:', error);
         }

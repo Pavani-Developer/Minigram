@@ -60,7 +60,8 @@ def update_profile(request):
     image = request.FILES.get('image')  # Use FILES to access uploaded image
 
     try:
-        user_profile = UserProfiles.objects.get(user_id=user_id)
+        # Try to get the existing user profile; if it doesn't exist, create one
+        user_profile, created = UserProfiles.objects.get_or_create(user_id=user_id)
 
         # Check if a new image is being uploaded and delete the old one if it exists
         if image is not None:
@@ -73,9 +74,11 @@ def update_profile(request):
 
         user_profile.save()
 
-        return Response({"message": "Profile updated successfully"}, status=status.HTTP_200_OK)
-    except UserProfiles.DoesNotExist:
-        return Response({"error": "User profile not found"}, status=status.HTTP_404_NOT_FOUND)
+        if created:
+            return Response({"message": "Profile created and updated successfully"}, status=status.HTTP_201_CREATED)
+        else:
+            return Response({"message": "Profile updated successfully"}, status=status.HTTP_200_OK)
+
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 @api_view(['GET'])

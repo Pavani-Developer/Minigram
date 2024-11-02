@@ -14,7 +14,8 @@ import './App.css';
 import EditProfile from './Pages/EditProfile';
 import PostDetail from './Pages/PostDetail';
 import ProtectedRoute from './Components/ProtectedRoute';
-import { UserProvider } from './contexts/UserContext';
+import { UserProvider, useUser } from './contexts/UserContext';
+import { UserProfileProvider } from './contexts/UserProfileContext';
 
 
 
@@ -22,14 +23,13 @@ const AppContent = () => {
   const userProfilePic = 'https://picsum.photos/50';
   const location = useLocation(); 
   const noNavbarPaths = ['/','/register'];
-  const [userDetails,setUserDetails] = useState({});
 
   const hideNavbar = noNavbarPaths.includes(location.pathname);
 
   
   return (
     <div className="app-container">
-      {!hideNavbar && <Navbar profilePic={userProfilePic} />}
+      {!hideNavbar && <Navbar />}
       <div className={`content-container ${hideNavbar ? 'full-width' : ''}`}>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -110,7 +110,10 @@ const App = () => {
   return (
     <BrowserRouter>
     <UserProvider>
-    <AppContent />
+      <UserProfileProvider>
+        <AppContent />
+      </UserProfileProvider>
+    
     </UserProvider>
       
     </BrowserRouter>
