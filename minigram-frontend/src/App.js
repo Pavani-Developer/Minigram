@@ -109,12 +109,12 @@ const AppContent = () => {
 const App = () => {
   return (
     <BrowserRouter>
-    <UserProvider>
-      <UserProfileProvider>
-        <AppContent />
-      </UserProfileProvider>
-    
-    </UserProvider>
+      <UserProvider>
+        <UserProfileProvider>
+          <AppContent />
+        </UserProfileProvider>
+      </UserProvider>
+
       
     </BrowserRouter>
   );
