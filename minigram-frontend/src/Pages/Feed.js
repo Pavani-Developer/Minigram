@@ -3,13 +3,16 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../Styles/Feed.css'; // Import the CSS file
 import axios from 'axios';
 import { useUserProfile } from '../contexts/UserProfileContext';
+import { useUser } from '../contexts/UserContext';
 
 const Feed = () => {
   const navigate = useNavigate(); // Initialize useNavigate
   const [commentsVisible, setCommentsVisible] = useState({});
   const [comments, setComments] = useState({});
   const [posts, setPosts] = useState([]);
+  const [userDetails] = useUser();
   const [userProfile] = useUserProfile();
+  
 
   const postss = [
     {
@@ -87,7 +90,7 @@ const Feed = () => {
           <div className='post-header'>
             <img
               src ={userProfile.image ? `http://127.0.0.1:8000${userProfile.image}` : 'default-profile-pic-url'}
-              alt={post.user}
+              alt={userDetails.username}
               className='post-user-img'
             />
             <span className='post-username'>{post.user}</span>
