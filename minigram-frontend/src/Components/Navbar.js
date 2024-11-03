@@ -7,16 +7,14 @@ import { useUser } from '../contexts/UserContext';
 import { useUserProfile } from '../contexts/UserProfileContext';
 
 const Navbar = () => {
-  const [userProfile]= useUserProfile();
-  const [userDetails] = useUser();
-  if (!userProfile) {
-    return null; // Or a loading indicator
-  }
+  const [userProfile] = useUserProfile();
+
+
   return (
     <div className='sidenav'>
       <div className='logo'>
         {/* Display user's profile picture */}
-        <Link to='/profile'><img src={userProfile.image || 'default-profile-pic-url.jpg'} alt="User Profile" className='profile-pic' /></Link>
+        <Link to='/profile'><img src ={userProfile.image ? `http://127.0.0.1:8000${userProfile.image}` : 'default-profile-pic-url'} alt="User Profile" className='profile-pic' /></Link>
       </div>
 
       <ul className='nav-items'>

@@ -31,6 +31,8 @@ const handleImageChange = (e) => {
       });
       console.log('Post created successfully:', response.data);
       console.log(userDetails.user.id);
+      setCaption(''); 
+      setImage(null);
     } catch (error) {
       console.error('Error creating post:', error);
     }

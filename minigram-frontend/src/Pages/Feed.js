@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../Styles/Feed.css'; // Import the CSS file
+import axios from 'axios';
+import { useUserProfile } from '../contexts/UserProfileContext';
 
 const Feed = () => {
   const navigate = useNavigate(); // Initialize useNavigate
   const [commentsVisible, setCommentsVisible] = useState({});
   const [comments, setComments] = useState({});
+  const [posts, setPosts] = useState([]);
+  const [userProfile] = useUserProfile();
 
-  const posts = [
+  const postss = [
     {
       id: 1,
       user: 'user1',
@@ -37,6 +41,21 @@ const Feed = () => {
     },
   ];
 
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/get-posts');
+        setPosts(response.data);
+        console.log(posts);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+  
+    fetchPosts();
+  }, []); // Add an empty dependency array to run once on component mount
+  
   const toggleComments = (postId) => {
     setCommentsVisible((prev) => ({
       ...prev,
@@ -67,7 +86,7 @@ const Feed = () => {
         <div key={post.id} className='post'>
           <div className='post-header'>
             <img
-              src={post.userImage}
+              src ={userProfile.image ? `http://127.0.0.1:8000${userProfile.image}` : 'default-profile-pic-url'}
               alt={post.user}
               className='post-user-img'
             />
@@ -75,7 +94,7 @@ const Feed = () => {
           </div>
           {/* Only make the image clickable to navigate to post detail */}
           <img 
-            src={post.image} 
+            src={post.image ? `http://127.0.0.1:8000${post.image}` : 'default-profile-pic-url'}
             alt={post.caption} 
             className='post-image' 
             onClick={() => handleImageClick(post)} 
