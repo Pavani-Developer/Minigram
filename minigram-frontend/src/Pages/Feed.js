@@ -4,21 +4,41 @@ import '../Styles/Feed.css';
 import axios from 'axios';
 import { useUserProfile } from '../contexts/UserProfileContext';
 import { useUser } from '../contexts/UserContext';
+import { ACCESS_TOKEN } from './../constants';
 
 const Feed = () => {
   const navigate = useNavigate();
   const [commentsVisible, setCommentsVisible] = useState({});
   const [comments, setComments] = useState({});
   const [posts, setPosts] = useState([]);
-  const { userDetails } = useUser(); // Use object destructuring
-  const [userProfile] = useUserProfile();
+  const { userDetails } = useUser();
+  const [userProfile, setUserProfile] = useUserProfile();
+
+  useEffect(() => {
+    if (userDetails && userDetails.user && !userProfile.image) {
+      const fetchUserData = async () => {
+        try {
+          const response = await axios.get(`http://127.0.0.1:8000/userdata/${userDetails.user.id}/`, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`,
+            },
+          });
+          setUserProfile(response.data);
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      };
+
+      fetchUserData();
+    }
+  }, [userDetails, userProfile, setUserProfile]);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get('http://127.0.0.1:8000/get-posts');
         setPosts(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error('Error fetching posts:', error);
       }
@@ -51,6 +71,11 @@ const Feed = () => {
     navigate('/post-detail', { state: { post } });
   };
 
+  // Check if userDetails or userDetails.user is null
+  if (!userDetails || !userDetails.user) {
+    return <div>Loading...</div>; // Display loading state or spinner
+  }
+
   return (
     <div className='feed-container'>
       {posts.map((post) => (
@@ -58,10 +83,10 @@ const Feed = () => {
           <div className='post-header'>
             <img
               src={userProfile.image ? `http://127.0.0.1:8000${userProfile.image}` : 'default-profile-pic-url'}
-              alt={ userDetails.user.username}
+              alt={userDetails.user.username || 'Profile'}
               className='post-user-img'
             />
-            <span className='post-username'>{ userDetails.user.username}</span>
+            <span className='post-username'>{userDetails.user.username}</span>
           </div>
           <img
             src={post.image ? `http://127.0.0.1:8000${post.image}` : 'default-image-url'}

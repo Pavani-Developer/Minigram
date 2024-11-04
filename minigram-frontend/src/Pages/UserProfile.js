@@ -2,37 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // For navigation
 import '../Styles/UserProfile.css'; // Import the CSS
 import { useUser } from '../contexts/UserContext';
-import axios from 'axios';
-import { ACCESS_TOKEN, REFRESH_TOKEN } from './../constants';
+
 import { useUserProfile } from '../contexts/UserProfileContext';
 
 const UserProfile = () => {
   const navigate = useNavigate();
   const { userDetails } = useUser();
   const [biodata, setBiodata] = useState([]);
-  const [userProfile, setUserProfile] = useUserProfile();
-
-  // Move the useEffect outside the conditional block
-  useEffect(() => {
-    if (userDetails && userDetails.user) {
-      const fetchUserData = async () => {
-        try {
-          const response = await axios.get(`http://127.0.0.1:8000/userdata/${userDetails.user.id}/`, {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`,
-            },
-          });
-          setUserProfile(response.data);
-          console.log(userProfile);
-        } catch (error) {
-          console.error('Error fetching user data:', error);
-        }
-      };
-
-      fetchUserData();
-    }
-  }, [userDetails]); // Add userDetails as a dependency
+  const [userProfile ] = useUserProfile();
+  
 
   // Conditional rendering to handle loading state or redirect
   if (!userDetails || !userDetails.user) {
