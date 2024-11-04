@@ -1,17 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // For navigation
-import '../Styles/UserProfile.css'; // Import the CSS
+import { useNavigate } from 'react-router-dom';
+import '../Styles/UserProfile.css';
 import { useUser } from '../contexts/UserContext';
-
 import { useUserProfile } from '../contexts/UserProfileContext';
+import axios from 'axios';
 
 const UserProfile = () => {
   const navigate = useNavigate();
   const { userDetails } = useUser();
   const [biodata, setBiodata] = useState([]);
-  const [userProfile ] = useUserProfile();
-  const [post,setPosts] = useState([]);
+  const [userProfile] = useUserProfile();
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    if (userDetails && userDetails.user) {
+      const fetchPosts = async () => {
+        try {
+          const response = await axios.get(`http://127.0.0.1:8000/get-post/${userDetails.user.id}`);
+          
+          // Check if the response data is an array
+          if (Array.isArray(response.data)) {
+            setPosts(response.data);
+          } else {
+            console.error('Expected response data to be an array, got:', response.data);
+            setPosts([]); // Fallback to an empty array to avoid errors
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
   
+      fetchPosts();
+    }
+  }, [userDetails]);
+   // Add dependency to only run when userDetails changes
 
   // Conditional rendering to handle loading state or redirect
   if (!userDetails || !userDetails.user) {
@@ -28,21 +50,6 @@ const UserProfile = () => {
     followers: '1.2k',
     following: 326,
   };
-
-  useEffect (() =>{
-    const fetchPosts = async ()=>{
-      try {
-        const response = await axios.get(`https://127.0.0.1:8000/userdata/${userDetails.user.id}/`);
-        setPosts (response.data);
-      } catch (error) {
-        console.error(error);
-      }
-          
-        
-      
-    fetchPosts();
-    }
-  })
 
   const handleLogout = () => {
     console.log("User logged out");
@@ -91,15 +98,23 @@ const UserProfile = () => {
         <p>{userData.bio}</p>
       </div>
 
+      
+      
+    {Array.isArray(posts) && posts.length > 0 ? (
       <div className='posts-grid'>
-        <img src="https://picsum.photos/300" alt="Post" />
-        <img src="https://picsum.photos/300" alt="Post" />
-        <img src="https://picsum.photos/300" alt="Post" />
-        <img src="https://picsum.photos/300" alt="Post" />
-        <img src="https://picsum.photos/300" alt="Post" />
-        <img src="https://picsum.photos/300" alt="Post" />
+        {posts.map((post, index) => (
+          <img
+            key={index}
+            src={post.image ? `http://127.0.0.1:8000${post.image}` : 'default-profile-pic-url'}
+            alt="Post"
+          />
+        ))}
       </div>
-    </div>
+    ) : (
+      <div>No posts available</div> // Optional message if there are no posts
+    )}
+  </div>
+ 
   );
 };
 
