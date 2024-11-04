@@ -10,6 +10,7 @@ const UserProfile = () => {
   const { userDetails } = useUser();
   const [biodata, setBiodata] = useState([]);
   const [userProfile ] = useUserProfile();
+  const [post,setPosts] = useState([]);
   
 
   // Conditional rendering to handle loading state or redirect
@@ -27,6 +28,21 @@ const UserProfile = () => {
     followers: '1.2k',
     following: 326,
   };
+
+  useEffect (() =>{
+    const fetchPosts = async ()=>{
+      try {
+        const response = await axios.get(`https://127.0.0.1:8000/userdata/${userDetails.user.id}/`);
+        setPosts (response.data);
+      } catch (error) {
+        console.error(error);
+      }
+          
+        
+      
+    fetchPosts();
+    }
+  })
 
   const handleLogout = () => {
     console.log("User logged out");
