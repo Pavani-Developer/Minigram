@@ -8,6 +8,11 @@ import os
 from .serializers import *
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Post  # Import the Post model if necessary
+from .serializers import PostSerializer  # Import the serializer for Post
 
 
 
@@ -93,12 +98,6 @@ def user_data(request, id):
     except UserProfiles.DoesNotExist:
         return Response({'error': 'User profile not found'}, status=404)
     
-    
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework import status
-from .models import Post  # Import the Post model if necessary
-from .serializers import PostSerializer  # Import the serializer for Post
 
 @api_view(['POST'])
 def createPost(request):
