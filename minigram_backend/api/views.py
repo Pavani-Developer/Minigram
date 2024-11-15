@@ -103,6 +103,7 @@ def createPost(request):
         image = request.FILES.get('image')  # Use FILES to get uploaded file
 
         # Create a dictionary for the serializer input
+        #``image`` is the name of the field in the serializer
         data = {
             'user': user_id,  # Ensure your serializer accepts this field correctly
             'caption': caption,
