@@ -12,9 +12,6 @@ from .models import Post  # Import the Post model if necessary
 from .serializers import PostSerializer  # Import the serializer for Post
 
 
-# Create your views here.
-
-# Create your views here.
 @api_view(['POST'])
 def registerView(request):
     email = request.data['email']
