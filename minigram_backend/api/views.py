@@ -84,7 +84,7 @@ def update_profile(request):
 def user_data(request, id):
     try:
         # Use select_related to fetch the UserProfile along with User in a single query
-        # to get the user data
+        
         user_profile = UserProfiles.objects.select_related('user').get(user__id=id)
         
         # Serialize the user profile data
