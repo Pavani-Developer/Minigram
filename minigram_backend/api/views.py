@@ -8,8 +8,8 @@ import os
 from .serializers import *
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated
-from .models import Post  # Import the Post model if necessary
-from .serializers import PostSerializer  # Import the serializer for Post
+from .models import Post  
+from .serializers import PostSerializer  
 
 
 @api_view(['POST'])
