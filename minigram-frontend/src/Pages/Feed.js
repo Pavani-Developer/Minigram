@@ -74,7 +74,7 @@ const Feed = () => {
 
   // Check if userDetails or userDetails.user is null
   if (!userDetails || !userDetails.user) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>; // Display loading state or spinner
   }
 
   return (
