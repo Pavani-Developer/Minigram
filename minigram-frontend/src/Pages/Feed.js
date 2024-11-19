@@ -131,3 +131,5 @@ const Feed = () => {
 };
 
 export default Feed;
+
+// tHIS config is for the backend
