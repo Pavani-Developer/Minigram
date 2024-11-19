@@ -47,7 +47,7 @@ const Feed = () => {
 
     fetchPosts();
   }, []);
-//REACT_APP_BATCH_ATTENDANCE_API
+
   const toggleComments = (postId) => {
     setCommentsVisible((prev) => ({
       ...prev,
