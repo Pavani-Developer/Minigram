@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-&a_0ns^y(wxrk_mb2j+mo7hymo(se(21-fvmwap9l%3y4_$^^v
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -156,11 +156,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Adjust `BASE_DIR` if necessary
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # Replace 'your_app' with your Django app name
-]
+STATIC_URL = 'static/'
 
 # settings.py media 
 MEDIA_URL = '/media/'
@@ -171,8 +167,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-ALLOWED_HOSTS = ['pavanipampana.pythonanywhere.com']
-
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
