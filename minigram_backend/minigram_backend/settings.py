@@ -159,7 +159,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'  # Adjust `BASE_DIR` if necessary
 STATICFILES_DIRS = [
-    BASE_DIR / 'api/static',  # Replace 'your_app' with your Django app name
+    BASE_DIR / 'static',  # Replace 'your_app' with your Django app name
 ]
 
 # settings.py media 
