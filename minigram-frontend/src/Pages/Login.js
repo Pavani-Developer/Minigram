@@ -46,7 +46,7 @@ const Login = () => {
       return;
     } else {
       try {
-          const res = await axios.post('http://127.0.0.1:8000/api/token/',data);
+          const res = await axios.post('https://pavanipampana.pythonanywhere.com/api/token/',data);
           localStorage.setItem(ACCESS_TOKEN, res.data.access);
           localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
           notifySuccess();
