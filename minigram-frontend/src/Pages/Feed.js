@@ -18,7 +18,7 @@ const Feed = () => {
     if (userDetails && userDetails.user && !userProfile.image) {
       const fetchUserData = async () => {
         try {
-          const response = await axios.get(`http://127.0.0.1:8000/userdata/${userDetails.user.id}/`, {
+          const response = await axios.get(`https://pavanipampana.pythonanywhere.com/userdata/${userDetails.user.id}/`, {
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`,
@@ -37,7 +37,7 @@ const Feed = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/get-posts');
+        const response = await axios.get('https://pavanipampana.pythonanywhere.com/get-posts');
         setPosts(response.data);
         console.log(response.data);
       } catch (error) {
@@ -82,14 +82,14 @@ const Feed = () => {
         <div key={post.id} className='post'>
           <div className='post-header'>
             <img
-              src={userProfile.image ? `http://127.0.0.1:8000${userProfile.image}` : 'default-profile-pic-url'}
+              src={userProfile.image ? `https://pavanipampana.pythonanywhere.com/${userProfile.image}` : 'default-profile-pic-url'}
               alt={userDetails.user.username || 'Profile'}
               className='post-user-img'
             />
             <span className='post-username'>{userDetails.user.username}</span>
           </div>
           <img
-            src={post.image ? `http://127.0.0.1:8000${post.image}` : 'default-image-url'}
+            src={post.image ? `https://pavanipampana.pythonanywhere.com/${post.image}` : 'default-image-url'}
             alt={post.caption}
             className='post-image'
             onClick={() => handleImageClick(post)}

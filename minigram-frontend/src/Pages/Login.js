@@ -53,7 +53,7 @@ const Login = () => {
           navigate('/feed'); 
 
           //fetch user details
-          const user = await axios.get(`http://127.0.0.1:8000/user/${data.username}/`,{
+          const user = await axios.get(`https://pavanipampana.pythonanywhere.com/user/${data.username}/`,{
           headers: {
             'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`, // Include access token if required

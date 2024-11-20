@@ -24,7 +24,7 @@ const handleImageChange = (e) => {
       formData.append('image', image);
     }
     try {
-      const response = await axios.post('http://127.0.0.1:8000/create-post', formData, {
+      const response = await axios.post('https://pavanipampana.pythonanywhere.com/create-post', formData, {
         headers: {
           'Content-Type': 'multipart/form-data', // For file upload
         },

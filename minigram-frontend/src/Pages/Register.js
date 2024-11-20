@@ -41,7 +41,7 @@ const Register = () => {
       return;
     } else {
       try {
-        const response = await axios.post('http://127.0.0.1:8000/registeruser/', data);
+        const response = await axios.post('https://pavanipampana.pythonanywhere.com/registeruser/', data);
         console.log('Registered Successfully');
         notifySuccess();
         window.location.href = '/';

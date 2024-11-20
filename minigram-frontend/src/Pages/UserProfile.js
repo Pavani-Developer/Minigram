@@ -105,7 +105,7 @@ const UserProfile = () => {
         {posts.map((post, index) => (
           <img
             key={index}
-            src={post.image ? `http://127.0.0.1:8000${post.image}` : 'default-profile-pic-url'}
+            src={post.image ? `https://pavanipampana.pythonanywhere.com/${post.image}` : 'default-profile-pic-url'}
             alt="Post"
           />
         ))}
