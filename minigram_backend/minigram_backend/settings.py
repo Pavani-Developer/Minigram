@@ -174,4 +174,4 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
   
 ]
-ALLOWED_HOSTS = ['https://pavanipampana.pythonanywhere.com/', "http://localhost:3000"]
+ALLOWED_HOSTS = [ "http://localhost:3000"]
