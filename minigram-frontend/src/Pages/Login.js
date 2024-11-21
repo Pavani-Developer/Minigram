@@ -10,12 +10,10 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
 import ForgotPasswordModal from '../Components/ForgotPasswordModal';
 
-
-
 const Login = () => {
   const navigate = useNavigate();
 
-  const {userDetails,setUserDetails} = useUser();
+  const {userDetails, setUserDetails} = useUser();
 
   const notifyError = () => toast.error('Invalid username or password');
   const notifyIncompleteDetails = () => toast.error('Please fill in all the details');
@@ -24,7 +22,7 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   
-  const [data,setData] = useState({
+  const [data, setData] = useState({
     username: '',
     password: ''
   });
@@ -34,45 +32,38 @@ const Login = () => {
     setData({
       ...data,
       [name]: value
-    })
-
+    });
   }
 
   const handleSubmit = async(e) => {
-    
     e.preventDefault();
     if (!data.username || !data.password) {
       notifyIncompleteDetails();
       return;
     } else {
       try {
-          const res = await axios.post('https://pavanipampana.pythonanywhere.com/api/token/',data);
+          const res = await axios.post(`${process.env.REACT_APP_API_URL}api/token/`, data);
           localStorage.setItem(ACCESS_TOKEN, res.data.access);
           localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
           notifySuccess();
           navigate('/feed'); 
 
-          //fetch user details
-          const user = await axios.get(`https://pavanipampana.pythonanywhere.com/user/${data.username}/`,{
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`, // Include access token if required
-          },
-      });
+          // Fetch user details
+          const user = await axios.get(`${process.env.REACT_APP_API_URL}user/${data.username}/`, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`, // Include access token if required
+            },
+          });
           setUserDetails(user.data);
-          console.log(userDetails)
-          
-        }catch(error){
-          console.log(error)
+          console.log(userDetails);
+      } catch (error) {
+          console.log(error);
           notifyError();
-          
-    
-          }
+      }
     }
-    
   }
-  
-    
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -111,8 +102,7 @@ const Login = () => {
           </div>
 
           <div className='remember-forgot'>
-            
-          <a href='#' onClick={() => setModalOpen(true)}>Forgot Password?</a>
+            <a href='#' onClick={() => setModalOpen(true)}>Forgot Password?</a>
           </div>
 
           <button type='submit' onSubmit={handleSubmit}>Login</button>
@@ -122,10 +112,9 @@ const Login = () => {
           <p>Don't have an account? <Link to='/register'>Register</Link></p>
         </div>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
       <ForgotPasswordModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
-
   );
 };
 

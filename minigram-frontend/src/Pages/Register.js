@@ -41,7 +41,7 @@ const Register = () => {
       return;
     } else {
       try {
-        const response = await axios.post('https://pavanipampana.pythonanywhere.com/registeruser/', data);
+        const response = await axios.post(process.env.REACT_APP_USER_REGISTER_API_KEY, data);
         console.log('Registered Successfully');
         notifySuccess();
         window.location.href = '/';
@@ -51,6 +51,7 @@ const Register = () => {
       }
     }
   };
+  
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);

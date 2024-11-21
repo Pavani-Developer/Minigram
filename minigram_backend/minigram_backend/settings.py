@@ -31,7 +31,6 @@ SECRET_KEY = 'django-insecure-&a_0ns^y(wxrk_mb2j+mo7hymo(se(21-fvmwap9l%3y4_$^^v
 DEBUG = False
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -175,4 +174,4 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
   
 ]
-ALLOWED_HOSTS = ['https://pavanipampana.pythonanywhere.com/']
+ALLOWED_HOSTS = ['https://pavanipampana.pythonanywhere.com/', "http://localhost:3000"]
