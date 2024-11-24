@@ -41,7 +41,7 @@ const UserProfile = () => {
   }
 
   const userData = {
-    profileImg: userProfile.image ? `http://127.0.0.1:8000${userProfile.image}` : '',
+    profileImg: userProfile.image ? `http://127.0.0.1:8000/${userProfile.image}` : '',
     name: userDetails.user.username,
     email: userDetails.user.email,
     bio: userProfile.bio,
