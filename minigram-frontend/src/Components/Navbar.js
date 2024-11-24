@@ -14,7 +14,7 @@ const Navbar = () => {
     <div className='sidenav'>
       <div className='logo'>
         {/* Display user's profile picture */}
-        <Link to='/profile'><img src ={userProfile.image ? `https://127.0.0.1:8000/${userProfile.image}` : 'default-profile-pic-url'} alt="User Profile" className='profile-pic' /></Link>
+        <Link to='/profile'><img src ={userProfile.image ? `http://127.0.0.1:8000/${userProfile.image}` : 'default-profile-pic-url'} alt="User Profile" className='profile-pic' /></Link>
       </div>
 
       <ul className='nav-items'>

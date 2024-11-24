@@ -42,14 +42,14 @@ const Login = () => {
       return;
     } else {
       try {
-          const res = await axios.post(`${process.env.REACT_APP_API_URL}api/token/`, data);
+          const res = await axios.post('http://127.0.0.1:8000/api/token/', data);
           localStorage.setItem(ACCESS_TOKEN, res.data.access);
           localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
           notifySuccess();
           navigate('/feed'); 
 
           // Fetch user details
-          const user = await axios.get(`${process.env.REACT_APP_API_URL}user/${data.username}/`, {
+          const user = await axios.get(`http://127.0.0.1:8000/user/${data.username}/`, {
             headers: {
               'Content-Type': 'multipart/form-data',
               'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`, // Include access token if required

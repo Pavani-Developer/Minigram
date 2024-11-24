@@ -82,14 +82,14 @@ const Feed = () => {
         <div key={post.id} className='post'>
           <div className='post-header'>
             <img
-              src={userProfile.image ? `https://127.0.0.1:8000/${userProfile.image}` : 'default-profile-pic-url'}
+              src={userProfile.image ? `http://127.0.0.1:8000/${userProfile.image}` : 'default-profile-pic-url'}
               alt={userDetails.user.username || 'Profile'}
               className='post-user-img'
             />
             <span className='post-username'>{userDetails.user.username}</span>
           </div>
           <img
-            src={post.image ? `https://127.0.0.1:8000/${post.image}` : 'default-image-url'}
+            src={post.image ? `http://127.0.0.1:8000/${post.image}` : 'default-image-url'}
             alt={post.caption}
             className='post-image'
             onClick={() => handleImageClick(post)}
