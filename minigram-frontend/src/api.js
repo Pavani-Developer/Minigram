@@ -3,7 +3,7 @@ import { ACCESS_TOKEN } from './constants';
 
 
 const api = axios.create({
-    baseURL: 'https://pavanipampana.pythonanywhere.com/'
+    baseURL: 'https://127.0.0.1:8000/',
 })
 
 // This interceptor is executed before each request is sent. It checks if there is an access token stored in the local storage (localStorage) using the key ACCESS_TOKEN.
