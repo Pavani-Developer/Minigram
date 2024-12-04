@@ -10,7 +10,8 @@ from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated
 from .models import Post  
 from .serializers import PostSerializer  
-
+# Create your views here.
+#Hi python anywhere
 
 @api_view(['POST'])
 def registerView(request):
